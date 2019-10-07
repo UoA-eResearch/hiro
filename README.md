@@ -3,4 +3,6 @@ C++ implementation of Hiro Matsumoto's Shore Platform Model with Cosmogenic Isot
 
 ## Building
 
-Use a 32-bit compiler
+A 32-bit compiler is required. To install multiarch support - 
+`sudo apt-get install g++-multilib`  
+`make debug`  
