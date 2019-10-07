@@ -14,6 +14,7 @@ March 7th 2016
 #import modules
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage.filters import gaussian_filter1d
 from matplotlib import cm
 from matplotlib import rc
 
@@ -25,7 +26,7 @@ padding = 5
 plt.figure(1,figsize=(6,6))
 
 # COLOR MAP
-ColourMap = cm.gray_r
+ColourMap = cm.jet
 
 #First plot the morphology through time
 #FileName = "../driver_files/ShoreProfile.xz"
@@ -52,6 +53,7 @@ for j in range(1,NoLines):
     NValues = len(X)
     M[j] = Line[1] 
     Z = np.linspace(CliffHeight,-CliffHeight,NValues)
+    X = gaussian_filter1d(X, sigma=6)
     #Z = np.linspace(CliffHeight,-CliffHeight, NValues)
     ax1.plot(X,Z,'k-',lw=1.5,color=ColourMap((j)/(NoLines)))
 	
@@ -86,6 +88,7 @@ m=M/dz
 for j in range(2,NoLines,1):
     X = np.array((Lines[j].strip().split(" "))[1:],dtype="float64")
     px = X[1:int(m[j-1])]
+    px = gaussian_filter1d(px, sigma=6)
     #N = np.array((Lines[j+1].strip().split(" "))[1:],dtype="float64")
     pn = np.arange(1,int(m[j-1]),1)*dz
     ax2.plot(pn,px,'r-',lw=1.5,color=ColourMap((j)/(NoLines)))

@@ -31,6 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/CRN_global_variables.hpp" />
+		<Unit filename="src/Hiro.cpp" />
+		<Unit filename="src/Hiro.hpp" />
+		<Unit filename="src/Hiro_v2_CRN_Driver.cpp" />
+		<Unit filename="src/RockyCoastCRN.cpp" />
+		<Unit filename="src/RockyCoastCRN.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

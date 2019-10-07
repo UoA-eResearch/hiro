@@ -1,2 +1,7 @@
 *.xz
 *.xn
+
+### CodeBlocks ###
+# specific to CodeBlocks IDE
+*.layout
+*.depend

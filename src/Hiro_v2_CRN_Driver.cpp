@@ -99,10 +99,10 @@ int main()
 	//Time control parameters
 	double EndTime = 100.;
 	double Time = 0.;
-	double TimeInterval = 1.;
+	double TimeInterval = 0.0005;
 
 	//Print Control
-	double PrintInterval = 10.;
+	double PrintInterval = .1;
 	double PrintTime = Time;
 	string OutputMorphologyFileName = "ShoreProfile.xz";
 	string OutputConcentrationFileName = "Concentrations.xn";
