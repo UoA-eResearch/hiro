@@ -782,6 +782,7 @@ void RockyCoastCRN::UpdateCRNs()
 	for (int i=0, NN=WaterLevels.size(); i<NN;++i) WaterLevels[i] = SeaLevel+TideLevels[i];
 
 	//LOOP Through the concentrations arrays
+	#pragma omp parallel for
 	for (int j=0; j<NXNodes; ++j)
 	{
 		//Get topographic shielding factor
