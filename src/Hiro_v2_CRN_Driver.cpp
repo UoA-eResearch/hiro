@@ -99,13 +99,15 @@ int main()
 	//Time control parameters
 	double EndTime = 100.;
 	double Time = 0.;
-	double TimeInterval = 0.0005;
+	double TimeInterval = 1;
 
 	//Print Control
-	double PrintInterval = .1;
+	double PrintInterval = 10;
 	double PrintTime = Time;
 	string OutputMorphologyFileName = "ShoreProfile.xz";
 	string OutputConcentrationFileName = "Concentrations.xn";
+	remove(OutputMorphologyFileName.c_str());
+	remove(OutputConcentrationFileName.c_str());
 
 	//initialise Hiro Model
 	Hiro PlatformModel = Hiro(dZ, dX, Gradient, CliffHeight);

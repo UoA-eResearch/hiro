@@ -71,7 +71,6 @@ These pages describe the software.
 #include <sstream>
 #include <cstdlib>
 #include <omp.h>
-#include "RoBoCoP.hpp"
 #include "Hiro.hpp"
 
 using namespace std;
@@ -83,7 +82,6 @@ using namespace std;
 ///@brief Main coastal platform object.
 class RockyCoastCRN
 {
-	friend class RoBoCoP;
 	friend class Hiro;
 
 	private:
@@ -240,7 +238,6 @@ class RockyCoastCRN
 		void Initialise(vector<int> WhichNuclides);
 		void Initialise(double retreatrate, double beachwidth, int beachtype, double bermheight, double platformgradient, double cliffheight, double junctionelevation, double tidalamplitude, double slr, int steppedplatform=0, double stepsize=0);
 		void Initialise(double retreatrate1, double retreatrate2, int retreattype, double changetime, double beachwidth, int beachtype, double bermheight, double platformgradient, double cliffheight, double junctionelevation, double tidalamplitude, double SLR, int steppedplatform=0, double stepsize=0);
-		void Initialise(RoBoCoP RoBoCoPCoast, vector<int> WhichNuclides);
 		void Initialise(Hiro HiroCoast, vector<int> WhichNuclides);
 
 		//function to initialise production schematics
@@ -317,14 +314,6 @@ class RockyCoastCRN
 			Initialise(retreatrate, beachwidth, beachtype, platformgradient, cliffheight, junctionelevation, tidalamplitude, slr, steppedplatform, stepsize);
 		}
 
-		/// @brief Initialisation function with friend class RoBoCoP as the morphological model
-		/// @param RoBoCoP RoBoCoPCoast a RoBoCoP coastal morphology object
-		/// @author Martin D. Hurst
-    	/// @date 8/3/2016
-		RockyCoastCRN(RoBoCoP RoBoCoPCoast, vector<int> WhichNuclides)
-		{
-			Initialise(RoBoCoPCoast, WhichNuclides);
-		}
 
 		/// @brief Initialisation function with friend class Hiro as the morphological model
 		/// @param Hiro HiroCoast a Hiro coastal morphology object
@@ -405,14 +394,6 @@ class RockyCoastCRN
 		/// @author Martin D. Hurst
 		/// @date 09/02/2016
 		void UpdateEquillibriumMorphology();
-
-		/// @brief Updates the platform morphology
-		/// @details This function calculates the amount of platform downwear and cliff retre updates the elevations
-		///   of the platform surface based on an iteration of the RoBoCoP coast object.
-		/// @author Martin D. Hurst
-		/// @param RoBoCoPCoast A RoBoCoP Coastal model object
-    	/// @date 14/03/2016
-		//void UpdateMorphology(RoBoCoP RoBoCoPCoast);
 
 		/// @brief Updates the platform morphology
 		/// @details This function calculates the amount of platform downwear and
