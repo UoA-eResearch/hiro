@@ -14,7 +14,7 @@ March 7th 2016
 #import modules
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.ndimage.filters import gaussian_filter1d
+#from scipy.ndimage.filters import gaussian_filter1d
 from matplotlib import cm
 from matplotlib import rc
 
@@ -53,7 +53,7 @@ for j in range(1,NoLines):
     NValues = len(X)
     M[j] = Line[1] 
     Z = np.linspace(CliffHeight,-CliffHeight,NValues)
-    X = gaussian_filter1d(X, sigma=6)
+    #X = gaussian_filter1d(X, sigma=6)
     #Z = np.linspace(CliffHeight,-CliffHeight, NValues)
     ax1.plot(X,Z,'k-',lw=1.5,color=ColourMap((j)/(NoLines)))
 	
@@ -74,27 +74,26 @@ xmin, xmax = ax1.get_xlim()
 	
 #now plot CRN concentration through time
 #FileName = "../driver_files/CRNConcentrations.xn"
-FileName = "./Concentrations.xn"
-f = open(FileName,'r')
-Lines = f.readlines()
-NoLines = len(Lines)
+#FileName = "./Concentrations.xn"
+#f = open(FileName,'r')
+#Lines = f.readlines()
+#NoLines = len(Lines)
 
-ax2 = plt.subplot(212)
+#ax2 = plt.subplot(212)
 #Get header info and setup X coord
-Header1 = Lines[0].strip().split(" ")
-Header2 = Lines[1].strip().split(" ")
-m=M/dz
+#Header1 = Lines[0].strip().split(" ")
+#Header2 = Lines[1].strip().split(" ")
+#m=M/dz
 
-for j in range(2,NoLines,1):
-    X = np.array((Lines[j].strip().split(" "))[1:],dtype="float64")
-    px = X[1:int(m[j-1])]
-    px = gaussian_filter1d(px, sigma=6)
+#for j in range(2,NoLines,1):
+ #    px = X[1:int(m[j-1])]
+#    px = gaussian_filter1d(px, sigma=6)
     #N = np.array((Lines[j+1].strip().split(" "))[1:],dtype="float64")
-    pn = np.arange(1,int(m[j-1]),1)*dz
-    ax2.plot(pn,px,'r-',lw=1.5,color=ColourMap((j)/(NoLines)))
+#    pn = np.arange(1,int(m[j-1]),1)*dz
+#    ax2.plot(pn,px,'r-',lw=1.5,color=ColourMap((j)/(NoLines)))
     
-plt.xlabel('Distance (m)')
-plt.ylabel('Concentration (atoms g$^{-1}$)')
+#plt.xlabel('Distance (m)')
+#plt.ylabel('Concentration (atoms g$^{-1}$)')
 
 plt.tight_layout()
 plt.show()

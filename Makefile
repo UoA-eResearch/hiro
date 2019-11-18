@@ -12,22 +12,22 @@ LD = g++
 WINDRES = windres
 
 INC = 
-CFLAGS = -Wall -m32 -fopenmp
+CFLAGS = -Wall -m32
 RESINC = 
 LIBDIR = 
 LIB = 
-LDFLAGS = -m32 -fopenmp
+LDFLAGS = -m32
 
 INC_DEBUG = $(INC)
-CFLAGS_DEBUG = $(CFLAGS) -pg
+CFLAGS_DEBUG = $(CFLAGS) -g
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)
 LIB_DEBUG = $(LIB)
-LDFLAGS_DEBUG = $(LDFLAGS) -pg
+LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj/Debug
 DEP_DEBUG = 
-OUT_DEBUG = bin/Debug/hiro
+OUT_DEBUG = bin/Debug/CRN_REMOVAL1
 
 INC_RELEASE = $(INC)
 CFLAGS_RELEASE = $(CFLAGS) -O2
@@ -38,11 +38,11 @@ LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
-OUT_RELEASE = bin/Release/hiro
+OUT_RELEASE = bin/Release/CRN_REMOVAL1
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/src/Hiro.o $(OBJDIR_DEBUG)/src/Hiro_v2_CRN_Driver.o $(OBJDIR_DEBUG)/src/RockyCoastCRN.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/Hiro.o $(OBJDIR_DEBUG)/Hiro_v2_CRN_Driver.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/src/Hiro.o $(OBJDIR_RELEASE)/src/Hiro_v2_CRN_Driver.o $(OBJDIR_RELEASE)/src/RockyCoastCRN.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/Hiro.o $(OBJDIR_RELEASE)/Hiro_v2_CRN_Driver.o
 
 all: debug release
 
@@ -50,7 +50,7 @@ clean: clean_debug clean_release
 
 before_debug: 
 	test -d bin/Debug || mkdir -p bin/Debug
-	test -d $(OBJDIR_DEBUG)/src || mkdir -p $(OBJDIR_DEBUG)/src
+	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
 
 after_debug: 
 
@@ -59,23 +59,20 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/src/Hiro.o: src/Hiro.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Hiro.cpp -o $(OBJDIR_DEBUG)/src/Hiro.o
+$(OBJDIR_DEBUG)/Hiro.o: Hiro.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Hiro.cpp -o $(OBJDIR_DEBUG)/Hiro.o
 
-$(OBJDIR_DEBUG)/src/Hiro_v2_CRN_Driver.o: src/Hiro_v2_CRN_Driver.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Hiro_v2_CRN_Driver.cpp -o $(OBJDIR_DEBUG)/src/Hiro_v2_CRN_Driver.o
-
-$(OBJDIR_DEBUG)/src/RockyCoastCRN.o: src/RockyCoastCRN.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/RockyCoastCRN.cpp -o $(OBJDIR_DEBUG)/src/RockyCoastCRN.o
+$(OBJDIR_DEBUG)/Hiro_v2_CRN_Driver.o: Hiro_v2_CRN_Driver.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c Hiro_v2_CRN_Driver.cpp -o $(OBJDIR_DEBUG)/Hiro_v2_CRN_Driver.o
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
 	rm -rf bin/Debug
-	rm -rf $(OBJDIR_DEBUG)/src
+	rm -rf $(OBJDIR_DEBUG)
 
 before_release: 
 	test -d bin/Release || mkdir -p bin/Release
-	test -d $(OBJDIR_RELEASE)/src || mkdir -p $(OBJDIR_RELEASE)/src
+	test -d $(OBJDIR_RELEASE) || mkdir -p $(OBJDIR_RELEASE)
 
 after_release: 
 
@@ -84,19 +81,16 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/src/Hiro.o: src/Hiro.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Hiro.cpp -o $(OBJDIR_RELEASE)/src/Hiro.o
+$(OBJDIR_RELEASE)/Hiro.o: Hiro.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Hiro.cpp -o $(OBJDIR_RELEASE)/Hiro.o
 
-$(OBJDIR_RELEASE)/src/Hiro_v2_CRN_Driver.o: src/Hiro_v2_CRN_Driver.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Hiro_v2_CRN_Driver.cpp -o $(OBJDIR_RELEASE)/src/Hiro_v2_CRN_Driver.o
-
-$(OBJDIR_RELEASE)/src/RockyCoastCRN.o: src/RockyCoastCRN.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/RockyCoastCRN.cpp -o $(OBJDIR_RELEASE)/src/RockyCoastCRN.o
+$(OBJDIR_RELEASE)/Hiro_v2_CRN_Driver.o: Hiro_v2_CRN_Driver.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c Hiro_v2_CRN_Driver.cpp -o $(OBJDIR_RELEASE)/Hiro_v2_CRN_Driver.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
 	rm -rf bin/Release
-	rm -rf $(OBJDIR_RELEASE)/src
+	rm -rf $(OBJDIR_RELEASE)
 
 .PHONY: before_debug after_debug clean_debug before_release after_release clean_release
 
